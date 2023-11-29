@@ -10,8 +10,9 @@ import sys
 # print("====================================")
 from vaultUtils import VaultClient
 from awsUtils import AWSConnector 
-from snowflake import SnowflakeConnector
- 
+# from snowflake import SnowflakeConnector
+from snowUtils import SnowflakeConnector
+
 VAULT_URL = "http://127.0.0.1:8200" 
 ROLE_ID = "865df005-e0c3-42c9-8ceb-883f3e88c8fd"
 SECRET_ID = "87a07373-6f46-8651-2aab-49fb62154557"
@@ -53,7 +54,7 @@ print("IAM Groups:", response)
 # Replace these with your Snowflake account details
 account = 'latflkz-icb55504'
 
-SECRET_PATH = "secret/data/aws"
+SECRET_PATH = "secret/data/snow"
 
 vault_client = VaultClient(VAULT_URL, ROLE_ID, SECRET_ID, SECRET_PATH)
 token = vault_client.authenticate_with_approle()
@@ -80,6 +81,7 @@ schema = 'TPCH_SF1'
 snowflake_conn = SnowflakeConnector(account, user, password, warehouse, database, schema)
 
 # Connect to Snowflake
+
 snowflake_conn.connect()
 
 # Execute a query

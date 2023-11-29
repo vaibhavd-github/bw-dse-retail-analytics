@@ -1,14 +1,14 @@
 import boto3
 import sys
 
-print("Before Append:" ,sys.path)
-print("====================================")
-sys.path.append('c:\\Users\\Shree\\bw-dse-retail-analytics\\src\\')
-# C:\\Users\\Shree\\bw-dse-retail-analytics\\utils'
-print("After Append:" ,sys.path)
-print("====================================")
-from utils.vaultUtils import VaultClient
-from utils.awsUtils import AWSConnector 
+# print("Before Append:" ,sys.path)
+# print("====================================")
+# sys.path.append('c:\\Users\\Shree\\bw-dse-retail-analytics\\src\\')
+# # C:\\Users\\Shree\\bw-dse-retail-analytics\\utils'
+# print("After Append:" ,sys.path)
+# print("====================================")
+from vaultUtils import VaultClient
+from awsUtils import AWSConnector 
  
 VAULT_URL = "http://127.0.0.1:8200" 
 ROLE_ID = "865df005-e0c3-42c9-8ceb-883f3e88c8fd"
@@ -39,10 +39,10 @@ client ="iam"
 aws_connector = AWSConnector(aws_access_key, aws_secret_key, client, region)
  
 # Access the iam client through the instance
-iam_client = aws_connector.create_aws_client()
+iam_client = aws_connector.aws_client_conn
 
 # Now you can use iam_client to perform iam operations
 response = iam_client.list_groups()
 
-response = client.list_groups()
+# response = client.list_groups()
 print("IAM Groups:", response)
